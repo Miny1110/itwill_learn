@@ -1,5 +1,7 @@
 package com.day7;
 
+//메소드 없음. 변수만 있음
+//데이터 보관이 목적인 클래스
 class Sub {
 	
 	int a, b;
