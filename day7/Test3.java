@@ -8,14 +8,14 @@ class Hap {
 	
 	
 	//정의
-	int su, sum;
+	int su;
 	
 	
 	//입력메소드
 	public void input() {
 
 		Scanner sc = new Scanner(System.in);
-		System.out.println("정수입력? ");
+		System.out.print("정수입력?: ");
 		su = sc.nextInt();
 		//입력만 받은 것이기 때문에 리턴값이 필요가 없다.
 
@@ -24,6 +24,8 @@ class Hap {
 	
 	//연산메소드
 	public int cnt() {
+		
+		int sum = 0;
 		
 		for(int i=1;i<=su;i++) {
 			sum += i;
