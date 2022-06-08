@@ -35,6 +35,7 @@ public class Rect {
 	public int area() {
 		
 		//지역변수
+		//바깥에서 사용(인식)할 수 없다.
 		int result;
 		
 		//w, h는 input메소드에 있는 지역변수. 그래서 area메소드에서 사용 불가(주석처리 된 것)
@@ -51,6 +52,7 @@ public class Rect {
 	//둘레구하기
 	public int length() {
 		
+		//area()에서 세줄로 작성했던 코드형식을 한줄로 줄인 것
 		return (w+h)*2;
 		
 	}
