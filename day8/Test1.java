@@ -42,7 +42,7 @@ public class Test1 {
 		
 		ob.setData(r);			//setData(r, ob)
 		double a = ob.area();	//area(ob)
-		ob.write(a);;			//write(a, ob)
+		ob.write(a);			//write(a, ob)
 		
 		
 	}
