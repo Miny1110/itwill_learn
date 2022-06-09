@@ -24,7 +24,7 @@ public class Test2_re {
 		
 		//오버로딩된 생성자 Test2_re(int x)호출
 		//하지만 Test2_re 클래스에서 Test2_re 생성자를 호출했기 때문에 이름이 같아서 에러발생. Test2_re 대신 this로 작성
-		this(30);
+		//this(30);
 		
 		System.out.println("기본생성자");
 		
@@ -52,8 +52,8 @@ public class Test2_re {
 	
 	
 	
-	
-	
+/*	
+
 	public static void main(String[] args) {
 		
 		Test2_re ob1 = new Test2_re();
@@ -73,14 +73,13 @@ public class Test2_re {
 		Test2_re ob4 = new Test2_re(60);
 		
 		
-		
+	
 		
 		
 		
 	}
-	
+*/
 }
-
 
 
 
