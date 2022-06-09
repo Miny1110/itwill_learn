@@ -7,7 +7,7 @@ package com.day8;
 public class Test2 {
 	 
 	public static int a = 10;	//class 변수
-	//클래스 변수 또는 클래스 메소드는 클래스가 로딩되는 순간 메모리할당이 이루어지며, [클래스이름.객체]를 통해 접근 가능하다..
+	//클래스 변수 또는 클래스 메소드는 클래스가 로딩되는 순간 메모리할당이 이루어지며, [클래스이름.객체 또는 메소드명]를 통해 접근 가능하다..
 	//즉, new를 통해서 메모리할당을 받지 않아도 사용 가능하다.
 	//로딩=실행(run하는 것). 객체생성 아님. 객체생성과 실행은 별개
 	
@@ -69,22 +69,22 @@ public class Test2 {
 		
 		ob1.a = 100;
 		ob1.b = 200;
-		System.out.println(ob1.a);
-		System.out.println(ob1.b);
+		System.out.println(ob1.a); //100
+		System.out.println(ob1.b); //200
 		
 		System.out.println("----------------------------");
 		
 		Test2 ob2 = new Test2();
 		
-		System.out.println(ob2.a);
-		System.out.println(ob2.b);
+		System.out.println(ob2.a); //100
+		System.out.println(ob2.b); //20
 		
 		System.out.println("----------------------------");
 		
 		Test2 ob3 = new Test2();
 		
-		System.out.println(ob3.a);
-		System.out.println(ob3.b);
+		System.out.println(ob3.a); //100
+		System.out.println(ob3.b); //20
 		
 	}
 
