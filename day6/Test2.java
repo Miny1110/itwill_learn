@@ -18,16 +18,22 @@ public class Test2 {
 		n = 0;
 		
 		while(n<6) {
+			
 			num[n] = rd.nextInt(45)+1;
-
-			//중복값 제거를 위한 조건문, 반복문
+			
 			for(i=0;i<n;i++) {
+	
 				if(num[i]==num[n]) {
+				
 					n--;
+				
 					break;
+				
 				}
 			}
+			
 			n++;
+			
 		}
 		
 		for(i=0;i<num.length-1;i++) {
@@ -44,7 +50,6 @@ public class Test2 {
 			}
 		}
 		
-		//확장for문
 		for(int su : num) {
 			System.out.printf("%4d", su);
 		}
