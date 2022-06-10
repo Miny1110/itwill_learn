@@ -52,7 +52,7 @@ public class Test2_re {
 	
 	
 	
-/*	
+
 
 	public static void main(String[] args) {
 		
@@ -78,7 +78,7 @@ public class Test2_re {
 		
 		
 	}
-*/
+
 }
 
 
