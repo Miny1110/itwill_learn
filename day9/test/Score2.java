@@ -72,6 +72,7 @@ public class Score2 {
 		
 		String pan;
 		
+		//int를 10으로 나누면 소수점 아래는 생략되니까 원점수가 0으로 끝나지 않더라도 case 경우에 무조건 속하게 된다.
 		switch(jumsu/10) {
 		
 		case 10:
