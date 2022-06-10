@@ -16,7 +16,10 @@ public class Test2_re {
 		int i, j, temp;
 		int n = 0;
 		
+		//중간에 중복값이 나오면 for문으로 다시 반복해야 하기때문에
+		//제일 바깥쪽 반복문을 몇번 반복할지 몰라서 while문 사용
 		while(n<6) {
+			//랜덤은 난수를 복사하는 개념이기 때문에 한번 나온 값이 다음에 중복으로 또 나올 수 있다.
 			num[n] = rd.nextInt(45)+1;
 			
 			for(i=0;i<n;i++) {
