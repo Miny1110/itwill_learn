@@ -102,7 +102,6 @@ public class Score {
 		
 		//메소드에서 메소드 호출
 		ranking();
-		
 
 		for(int i=0;i<inwon;i++) {
 			
