@@ -41,7 +41,8 @@ class Recta extends Super {
 	private int w, h;
 	
 /*
- 	생략되어 있음
+ 	//생략되어 있음
+ 	//Recta 클래스의 기본생성자 생략 + 생성자 내의 첫 문장인 부모의 기본생성자 호출 생략
  	public Recta() {
 		super();
 	}
