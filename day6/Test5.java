@@ -30,7 +30,7 @@ public class Test5 {
 		
 		if(jumin.length()!=14) {
 			System.out.println("입력 오류!");
-			return;		//stop
+			return;		//stop: 아래에 있는 코딩을 실행하지 말고 main 메소드를 빠져나간다.
 		}
 		
 		tot = 0;
