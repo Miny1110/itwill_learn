@@ -3,7 +3,7 @@ package com.day9;
 //Overload
 //Overloading
 //메소드 중복정의
-//하나의 클래스에서 메소드의 이름은 동일하지만, 매개변수의 개수가 다르거나 자료형이 다르면 다른 메소드로 인식한다.
+//하나의 클래스 안에서 비슷한 작업을 하는 메소드의 이름은 동일하지만, 매개변수의 개수가 다르거나 자료형이 다르면 다른 메소드로 인식한다.
 //매개변수 자료형과 개수가 같다면 변수명이 달라도 같은 메소드로 인식한다.
 
 class Rect {
@@ -50,7 +50,7 @@ class Rect {
 		System.out.println("넓이: " + a);
 	}
 	
-	
+	//위 메소드와 매개변수 개수는 같지만 자료형이 다르기때문에 오버로딩
 	public void print(double l) {
 		System.out.println("가로: " + w);
 		System.out.println("세로: " + h);
