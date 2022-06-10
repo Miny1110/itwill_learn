@@ -68,6 +68,29 @@ public class Score2 {
 	}
 	
 	
+	private String panjung(int jumsu) {
+		
+		String pan;
+		
+		switch(jumsu/10) {
+		
+		case 10:
+		case 9:
+			pan = "수"; break;
+		case 8:
+			pan = "우"; break;
+		case 7:
+			pan = "미"; break;
+		case 6:
+			pan = "양"; break;
+		default:
+			pan = "가"; break;
+
+		}
+		return pan;
+	}
+	
+	
 	public void print() {
 		
 		grade();
@@ -75,7 +98,7 @@ public class Score2 {
 		for(i=0;i<inwon;i++) {
 			System.out.printf("%4s: ", rec[i].name);
 			for(j=0;j<3;j++) {
-				System.out.printf("%4d점(%s)", rec[i].score[j], rec[i].grade[j]);
+				System.out.printf("%4d점(%s,%s)", rec[i].score[j], rec[i].grade[j], panjung(rec[i].score[j]));
 			}
 
 			System.out.printf("\t총점:%4d점   평균:%4d점\n", rec[i].tot, rec[i].avg);
