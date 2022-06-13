@@ -46,14 +46,16 @@ class Calc extends Sum {
 				
 				switch(ch) {
 				case '+':
-					result = num1 + num2; super.oper = "+"; break;
+					result = num1 + num2; break;
 				case '-':
-					result = num1 - num2; super.oper = "-"; break;
+					result = num1 - num2; break;
 				case '*':
-					result = num1 * num2; super.oper = "*"; break;
+					result = num1 * num2; break;
 				case '/':
-					result = num1 / num2; super.oper = "/"; break;
+					result = num1 / num2; break;
 				}
+				
+				super.oper = Character.toString(ch);
 			
 			}
 		}
