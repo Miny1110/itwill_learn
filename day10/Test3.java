@@ -33,7 +33,7 @@ class RectD extends SuperD {
 		
 	public RectD(int w, int h) {
 			
-		//super() 생략되어 있음
+		//super()로 쓰면 에러발생. 왜냐하면 부모클래스에 기본생성자가 없기 때문이다. 오버로딩 생성자는 있는데 기본생성자는 없으면 개발자의 의도가 반영된 것으로 판단하기 때문에, 이러한 경우에는 부모의 기본생성자를 호출할 수 없다.
 		super("사각형");
 			
 		this.w = w;
