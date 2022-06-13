@@ -41,6 +41,10 @@ class Rect extends SuperC {	//Rect 클래스는 원래 출력메소드 없음. �
 	
 	//생성자 오버로딩
 	public Rect(int w, int h) {
+		//부모생성자 호출 생략되어 있음
+		//자녀생성자의 첫줄엔 super생성자 호출이 숨겨져있기 때문에 자식생성자는 무조건 부모생성자 호출을 먼저 한다. 따라서 자식이 메모리에 올라가기 전에 부모가 먼저 올라간다. 
+		//super();
+		
 		this.w = w;
 		this.h = h;
 	}
