@@ -45,6 +45,7 @@ public class Test6 {
 				case '/':
 					result = num1 / num2; break;
 				}
+				//만약 case 실행문 뒤에 break를 생략한다면, switch 뒤의 조건과 case 뒤의 조건값이 일치하지 않더라도 이후 case 경우의 실행문이 모두 진행된다. 그리고 break를 만나면 멈춘다. (만약 break가 없다면 마지막 실행문까지 모두 진행된 후 switch문을 빠져나온다.)
 
 				//System.out.printf("%d %c %d = %d", num1, oper, num2, result);
 				String s = String.format("%d %c %d = %d", num1, oper, num2, result);
