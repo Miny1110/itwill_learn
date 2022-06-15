@@ -25,7 +25,7 @@ class SubTest extends SuperTest {
 	
 	@Override
 	public int hap() {
-		return a + b + c;
+		return a + b + c; //10+100+200=310
 	}
 	
 }
