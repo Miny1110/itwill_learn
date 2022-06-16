@@ -80,6 +80,14 @@ public class Test3 {
 		System.out.print("1.오렌지? 2.사과?"); //1,2
 		int n = sc.nextInt();
 		
+		/*
+		ItemFruit ob;
+		ob = new Orange();
+		ob = new Apple();
+		과정을 ItemFruit ob을 packing 메소드의 매개변수에 넣는 것으로 했다.
+		데이터를 계속 유지할 필요가 없고 덧입혀도 되기 때문이다.)
+		*/
+		
 		if(n==1) 
 			t.packing (new Orange());
 		else if(n==2)
