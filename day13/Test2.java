@@ -14,7 +14,8 @@ class TestImpl implements Test {
 	private String hak, name;
 	private int kor, eng;
 	
-	//기본생성자+메소드로 private 변수 초기화
+	
+	/*기본생성자+메소드로 private 변수 초기화하는 방법
 	public TestImpl() {}
 	
 	public void set(String hak, String name, int kor, int eng) {
@@ -23,6 +24,7 @@ class TestImpl implements Test {
 		this.kor = kor;
 		this.eng = eng;
 	}
+	*/
 	
 	
 	//오버로딩 생성자를 통해 변수 초기화
