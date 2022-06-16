@@ -31,10 +31,11 @@ public class Test6 {
 
 	public static void main(String[] args) {
 
-		//Outer3 out = new Outer3();
+		Outer3 out = new Outer3();
 		
-		//Outer3.Inner3 inner = new Outer3.Inner3();
-		//inner.write();
+		Outer3.Inner3 inner = new Outer3.Inner3();
+		inner.write();
+		
 		
 	}
 
