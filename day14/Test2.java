@@ -72,6 +72,7 @@ public class Test2 {
 		//위에서 "서울"을 출력했기 때문에 아래 반복문에서는 "부산"부터 출력된다.
 		//Iterator에서의 출력은 move 개념이기 때문에, 아래 반복문이 끝나면 모든 값이 출력됐기 때문에 it는 null값이 된다.
 		//it.hasNext: it 안에 데이터가 있을 때까지 (it가 데이터를 가지고 있을 때까지)
+		//데이터가 몇개 있는지 모르니까 while문 사용
 		while(it.hasNext()) { 
 			str = it.next(); 
 			System.out.print(str + " ");
