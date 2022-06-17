@@ -69,23 +69,44 @@ public class ScoreImpl implements Score {
 
 	@Override
 	public void deleteHak() {
+		/*
 		System.out.println("삭제할 학번?");
 		String hak = sc.next();
-	
+
 		Iterator<ScoreVO> it = lists.iterator();
 		while(it.hasNext()) {
 
 			ScoreVO vo = it.next();
 
 			if(hak.equals(vo.getHak())) {
-				it.remove();
+				//it.remove();
+				//iterator의 remove
 				
+				lists.remove(vo);
+				break; //break 생락하면 에러 발생. 멈추지 않으면 반복문때문에 빈공간과 데이터를 비교하게 된다.
+				//lists의 remove
+				//실제 데이터를 삭제하는 코드다.	
 			}
 		}
 		print();
+		 */
+
+		System.out.println("삭제할 학번?"); //222
+		String hak = sc.next();
+
+		Iterator<ScoreVO> it = lists.iterator();
+		while(it.hasNext()) {
+
+			ScoreVO vo = it.next();
+
+			if(hak.equals(vo.getHak())) {
+				lists.remove(vo);
+				break;
+			}
+		}
 	}
 
-	
+
 
 	@Override
 	public void searchHak() {
@@ -128,7 +149,6 @@ public class ScoreImpl implements Score {
 	@Override
 	public void descSortTot() {
 
-
 		Comparator<ScoreVO> comp  = new Comparator<ScoreVO>() {
 
 			@Override
@@ -140,14 +160,14 @@ public class ScoreImpl implements Score {
 		Collections.sort(lists, comp);
 
 		print();
-	
+
 	}
 
 
 
 	@Override
 	public void ascSortHak() {
-
+		/*
 		Comparator<ScoreVO> comp  = new Comparator<ScoreVO>() {
 
 			@Override
@@ -156,11 +176,24 @@ public class ScoreImpl implements Score {
 			}
 		};
 
-		
+
 		Collections.sort(lists, comp);
 
 		print();
+		 */
 
+		Comparator<ScoreVO> comp = new Comparator<ScoreVO>() {
+
+			@Override
+			public int compare(ScoreVO o1, ScoreVO o2) {
+				return o1.getHak().compareTo(o2.getHak());
+
+			}
+		};
+
+		Collections.sort(lists, comp);
+
+		print();
 	}
 
 }
