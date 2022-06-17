@@ -2,6 +2,8 @@ package com.score3;
 
 public interface Score {
 
+	//abstract 생략되어 있다. Interface니까
+	
 	public int input(); //입력
 	public void print(); //출력
 	public void deleteHak(); //학번삭제
