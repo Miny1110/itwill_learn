@@ -80,8 +80,8 @@ public class ScoreVO { //Value Object. 데이터를 저장하는 저장공간으
 	}
 */	
 //-----------------------------------------------------------------------------------------------
-	
-	
+
+	//Getter, Setter
 	public String getHak() {
 		return hak;
 	}
@@ -122,6 +122,8 @@ public class ScoreVO { //Value Object. 데이터를 저장하는 저장공간으
 		this.mat = mat;
 	}
 	
+	//tot는 Setter 없어도 된다. 위에서 받은 값으로 연산이 되기 때문에.
+	//Getter와 Setter 둘 다 꼭 필요한 것은 아니다.
 	public int getTot() {
 		return kor + eng + mat;
 	}
@@ -133,7 +135,7 @@ public class ScoreVO { //Value Object. 데이터를 저장하는 저장공간으
 	@Override
 	public String toString() {
 
-		if(hak==null || name==null) {
+		if(hak==null || hak.equals("")) {
 			return null;
 		}
 
