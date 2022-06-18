@@ -46,6 +46,7 @@ public class Test3 {
 		while(!st.empty()) {
 			System.out.print(st.pop() + " ");
 		}
+		System.out.println();
 		
 //---------------------------------------------------------------------------------------------
 
@@ -116,28 +117,5 @@ public class Test3 {
 		for(String sss : str) {
 			System.out.print(sss + " ");
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 }
