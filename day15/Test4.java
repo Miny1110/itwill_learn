@@ -11,9 +11,6 @@ class Box<T> {
 	public T get() {
 		return t;
 	}
-	
-	
-	
 }
 
 
@@ -38,5 +35,4 @@ public class Test4 {
 		System.out.println(s);
 		
 	}
-
 }
