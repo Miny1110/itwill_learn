@@ -7,7 +7,7 @@ import java.util.Iterator;
 Map<key,value>
 
 Hashtable(클래스) - 동기화를 지원한다 (Vector처럼)
-HastMap(클래스) - 동기화를 지원하지 않는다. (ArrayList처럼)
+HashMap(클래스) - 동기화를 지원하지 않는다. (ArrayList처럼)
 
 
 Map의 특징
