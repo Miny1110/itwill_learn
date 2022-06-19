@@ -11,7 +11,6 @@ public class TicketImpl implements Ticket {
 	
 	Scanner sc = new Scanner(System.in);
 	String ID;
-	String seatA;
 	int seatRow, seatNum;
 	
 	
@@ -34,9 +33,9 @@ public class TicketImpl implements Ticket {
 		
 		do {
 			System.out.print("좌석 구역?(A,B,C) ");
-			seatA = sc.next();
-			vo.setSeatArea(seatA);
-		} while(seatA!="A" && seatA!="B" && seatA!="C");
+			vo.setSeatArea(sc.next());
+			hMap.put(ID, vo);
+		} while(vo.getSeatArea()!="A" && vo.getSeatArea()!="B" && vo.getSeatArea()!="C");
 		
 		
 		do {
@@ -106,14 +105,14 @@ public class TicketImpl implements Ticket {
 		System.out.println("좌석변경할 아이디?");
 		TicketVO vo = hMap.get(sc.next());
 		
-			
+		/*	
 		do {
 			System.out.print("좌석 구역?(A,B,C) ");
 			seatA = sc.next();
 			vo.setSeatArea(seatA);
 		} while(seatA!="A" && seatA!="B" && seatA!="C");
 		
-		
+		*/
 		do {
 			System.out.print("좌석 열번호?(1~10) ");
 			seatRow = sc.nextInt();
