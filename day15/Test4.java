@@ -21,7 +21,7 @@ public class Test4 {
 		Box b1 = new Box();
 		
 		b1.set(30); //Object에 Integer가 들어감. upcast
-		Integer i = (Integer)b1.get();
+		Integer i = (Integer)b1.get(); //get으로 가져오면 object 타입이기 때문에 int타입인 i에 넣기 위해서 downcast
 		System.out.println(i);
 		
 		Box<Integer> b2 = new Box<>();
