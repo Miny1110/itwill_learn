@@ -3,6 +3,7 @@ package com.score4;
 public class ScoreVO {
 	
 	//변수
+	//key와 value는 저장소가 다르기때문에 key값을 제외한 변수만 선언 (key: 학번)
 	private String name;
 	private int kor;
 	private int eng;
