@@ -50,7 +50,7 @@ public class TicketVO {
 	
 	@Override
 	public String toString() {
-		String str = String.format("%6s %s구역-%d열-%d번 %4s(%d)",
+		String str = String.format("%6s %3s구역-%d열-%d번 %4s(%d)",
 				pName, seatArea, seatRow, seatNum, cName, phoneNum);
 		
 		return str;
