@@ -25,6 +25,7 @@ public class Test1 {
 		
 		
 		//ListIterator
+		//이터레이터와 사용방법은 똑같다.
 		ListIterator<String> it1 = lists.listIterator();
 		while(it1.hasNext()) {
 			System.out.print(it1.next() + " ");
@@ -41,6 +42,7 @@ public class Test1 {
 		
 		List<String> lists1 = new ArrayList<>();
 		
+		//한 칸에 모든 데이터가 들어가는 것이 아니라 lists의 모든 데이터가 lists1의 각 칸에 하나씩 들어가는 개념
 		lists1.addAll(lists);
 		lists1.add("인천");
 		
