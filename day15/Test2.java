@@ -6,6 +6,7 @@ import java.util.Iterator;
 /*
 Map<key,value>
 
+Map이라는 인터페이스를 구현한 클래스에는 다음과 같은 것이 있다.
 Hashtable(클래스) - 동기화를 지원한다 (Vector처럼)
 HashMap(클래스) - 동기화를 지원하지 않는다. (ArrayList처럼)
 
@@ -46,6 +47,7 @@ public class Test2 {
 		}
 		
 		
+		//key값 비교
 		if(h.containsKey("222-222")) {
 			System.out.println("222-222 있다");
 		} else {
@@ -53,6 +55,7 @@ public class Test2 {
 		}
 		
 		
+		//value값 비교(value에는 일반적으로 클래스를 넣기 때문에, 클래스에는 여러 데이터가 들어있어서 contatinsValue는 활용도가 높지는 않다.)
 		if(h.containsValue("강아랑")) {
 			System.out.println("강아랑 있다");
 		} else {
@@ -60,7 +63,7 @@ public class Test2 {
 		}
 		
 		
-		//Map은 iterator가 없어서 keSet의 iterator를 쓴다.
+		//Map은 iterator가 없어서 keySet의 iterator를 쓴다.
 		Iterator<String> it = h.keySet().iterator();
 		while(it.hasNext()) {
 			String key = it.next(); //key
