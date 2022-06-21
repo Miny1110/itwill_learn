@@ -53,6 +53,8 @@ public class Test1 {
 			//e.printStackTrace();
 			System.out.println("그밖의 에러");
 			
+		} finally {
+			System.out.println("난 항상 보인다");
 		}
 
 	}
