@@ -2,8 +2,6 @@ package com.naver;
 
 import java.util.Scanner;
 
-import com.score3.Score;
-import com.score3.ScoreImpl;
 
 public class NaverMain {
 
