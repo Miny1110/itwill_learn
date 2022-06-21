@@ -7,9 +7,10 @@ class MyException extends Exception {
 	//private static final long serialVersionUID = 1L;
 
 
-	//사용자한테 메세지를 받아서 Exception이 가지고있는 오버로딩된 생성자를 찾아가서 메세지를 넣는다.
 	//MyException 오버로딩 생성자
 	public MyException(String msg)	{
+
+		//사용자한테 메세지를 받아서 Exception이 가지고있는 오버로딩된 생성자를 찾아가서 메세지를 넣는다.
 		super(msg);
 	}
 
