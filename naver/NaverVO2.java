@@ -59,7 +59,7 @@ public class NaverVO2 {
 	@Override
 	public String toString() {
 		String str;
-		str = String.format("%s | %s | %s | %s | %d | %s | %d ", 
+		str = String.format("%s | %s | %s | %s | %s | %s | %s ", 
 				id, pw1, name, gender, birth, email, tel);
 		return str;
 	}
