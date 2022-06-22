@@ -40,11 +40,11 @@ public class Test6 {
 		
 		
 		System.out.println("메인스레드 우선순위 : " + t1.getPriority()); //메인스레드 우선순위 default 5 //1
-		System.out.println("메인스레드 이름 : " + t1.getName()); //2
+		System.out.println("메인스레드 이름 : " + t1.getName()); //main //2
 		
 		System.out.println("t2.start메소드 호출전 is Alive: " + t2.isAlive()); //살아있는지, (실행 전이라 false가 출력) //3
 		
-		t2.start();
+		t2.start(); //스레드 호출
 		
 		/*t2의우선순위
 		System.out.println("t2스레드 우선순위 : " + t2.getPriority());
@@ -56,7 +56,7 @@ public class Test6 {
 		//t2의 우선순위
 		System.out.println("t2 우선순위: " + t2.getPriority()); //4
 		
-		t2.setPriority(1);
+		t2.setPriority(1); //t2의 우선순위 1로 바꿔라. 5->1
 		
 		try {
 			Thread.sleep(100); //쉬는동안 t2.run 실행
