@@ -37,6 +37,7 @@ public class Test2{
 
 		System.out.println("main 시작...");
 
+		//인터페이스로 연결하면 스레드 생성이 필요하다
 		Thread t1 = new Thread(new MyTread2(100,"첫번째: "));
 		Thread t2 = new Thread(new MyTread2(200,"두번째: "));
 		
