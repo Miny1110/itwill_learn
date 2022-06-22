@@ -1,6 +1,6 @@
 package com.day17;
 
-//Demon 스레드
+//Daemon 스레드
 //다른 스레드에 도움을 주는 스레드로 다른 스레드(main)가 종료되면 데몬스레드가 작업을 완료하지 않아도 종료된다.
 
 class MyThread5 implements Runnable {
@@ -14,7 +14,7 @@ class MyThread5 implements Runnable {
 			try {
 				Thread.sleep(1000);
 			} catch (Exception e) {
-				e.printStackTrace();
+
 			}
 		}
 	}
@@ -45,7 +45,7 @@ public class Test5{
 		
 		
 		try {
-			Thread.sleep(1000); //main 1초 쉼
+			Thread.sleep(1000); //main스레드에 적용되는 sleep. main 1초 쉼
 		} catch (Exception e) {
 		}
 		
