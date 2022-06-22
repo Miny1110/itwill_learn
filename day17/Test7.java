@@ -50,7 +50,7 @@ public class Test7 {
 		t2.start();
 		t3.start();
 		
-		t1.interrupt();
+		t1.interrupt(); //t1 스탑해 라는 명령. run의 try가 아니라 catch가 받고 그 아래 코드를 실행한다.
 		
 		try {
 			
