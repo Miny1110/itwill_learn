@@ -22,6 +22,7 @@ class MyTread1 extends Thread{
 			i++;
 			
 			//번갈아가면서 출력되게 만들기 위해 작성
+			//sleep은 반드시 try-catch문으로 묶어주어야 한다
 			try {
 				sleep(100); //1000=1초 -> 100=0.1초
 			} catch (Exception e) {
