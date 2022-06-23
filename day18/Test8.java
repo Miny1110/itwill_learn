@@ -19,6 +19,9 @@ public class Test8 {
 		
 		try {
 
+			//FileInputStream fis = new FileInputStream(f);
+			//FileOutputStream fos = new FileOutputStream(f);
+			//위아래 같은 코드. 왜냐하면 f가 주소도 가지고 있기 때문에
 			FileInputStream fis = new FileInputStream(str1);
 			FileOutputStream fos = new FileOutputStream(str2);
 
