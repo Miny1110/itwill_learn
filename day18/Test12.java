@@ -16,6 +16,7 @@ public class Test12 {
 		
 		File f = new File(path);
 		
+		//파일이 존재하지 않으면 만들어라
 		if(!f.exists()) {
 			f.mkdirs();
 		}
@@ -35,7 +36,7 @@ public class Test12 {
 			System.out.println("문자열? ");
 			
 			int data;
-			while((data=System.in.read())!=-1) {
+			while((data=System.in.read())!=-1) { 
 				fos.write(data);
 				fos.flush();
 			}
