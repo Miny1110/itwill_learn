@@ -28,6 +28,8 @@ public class Test5 {
 				//flush 안쓰면 엔터가 없는 마지막 줄은 출력되지 않는다.
 				//마지막에 엔터가 없는 줄까지 출력하게 하기 위해서는 flush를 작성해야 한다.
 			} 
+			
+			fis.close();
 		
 		} catch (Exception e) {
 
