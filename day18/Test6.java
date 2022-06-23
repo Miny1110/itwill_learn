@@ -16,6 +16,7 @@ public class Test6 {
 			
 			System.out.print("문자열 입력");
 			
+			//한줄씩 읽는다 read는 반환값이 int. 아스키값으로 돌려주는 것이다. 
 			while((data=System.in.read())!=-1) {
 				fos.write(data);
 				fos.flush();
