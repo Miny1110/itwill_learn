@@ -38,6 +38,7 @@ public class Test7 {
 
 	public static void main(String[] args) {
 
+		//스레드 생성
 		MyThread7 t1 = new MyThread7();
 		MyThread7 t2 = new MyThread7();
 		MyThread7 t3 = new MyThread7();
