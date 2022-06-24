@@ -1,5 +1,7 @@
 package com.day19;
 
+//Swing
+
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,6 +34,7 @@ public class Test7 extends JFrame implements ActionListener{
 		
 		mi = new JMenuItem("입력");
 		menu.add(mi);
+		//클릭했다는 것을 감지하기 위해서 리스너 필요하다.
 		mi.addActionListener(this);
 
 		mi = new JMenuItem("메세지");
