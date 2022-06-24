@@ -164,7 +164,7 @@ public class Test5 extends Frame implements ActionListener{
 				
 				for(int i=0;i<tf.length;i++) {
 					
-					//i가 3이 아니고, 이벤트가 발생한 객체가 tf[i]번째와 같으면 포커스를 아래로 옮겨라
+					//i가 3이 아니고, 이벤트가 발생한 객체가 tf[i]번째와 같으면(tf[i]가 자기 자신일 때) 포커스를 아래로 옮겨라
 					if(i!=3 && tf[i]==t) {
 						tf[i+1].requestFocus();
 						return;
