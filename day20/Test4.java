@@ -76,15 +76,9 @@ public class Test4 extends Frame implements ActionListener{
 				}
 				
 			}
-			
-			
-			
-			
-			
+				
 		} catch (Exception e2) {
 			// TODO: handle exception
 		}
-		
 	}
-
 }
