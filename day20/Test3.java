@@ -29,7 +29,6 @@ public class Test3 {
 			// TODO: handle exception
 		}
 		
-		
 	}
 
 }
