@@ -109,6 +109,7 @@ public class SeverTest2 {
 					}
 
 					System.out.println(msg);
+					sc = null;
 					
 				} catch (Exception e2) {
 
