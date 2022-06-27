@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 /*
 c[a-z]* : c로 시작하는 영단어
-c[a-z] : c로 시작하는 두글자 영단어
+c[a-z]+ : c로 시작하는 두글자 이상 영단어
 c[a-zA-Z0-9] : ca,cA,c4
 c. : c로 시작하는 두글자
 c.* : c로 시작하는 모든문자
@@ -35,7 +35,7 @@ public class Test1 {
 		}
 		
 		System.out.println("-----------");
-		p = Pattern.compile("c[a-z]+"); // + : 한글자 이상
+		p = Pattern.compile("c[a-z]+"); 
 		
 		for(String s : str) {
 			Matcher m = p.matcher(s);
