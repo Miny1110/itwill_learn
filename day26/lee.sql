@@ -1,0 +1,6 @@
+--LEE
+
+SELECT * FROM CUSTOM;
+
+--실제로 있는 데이터에서 주민번호 가져오기
+SELECT USERNAME, RPAD(SUBSTR(JUMIN,1,8),14,'*') JUMIN FROM CUSTOM
