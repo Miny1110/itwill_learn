@@ -1,0 +1,505 @@
+--LEE
+
+SELECT * FROM CUSTOM;
+
+--실제로 있는 데이터에서 주민번호 가져오기
+SELECT USERNAME, RPAD(SUBSTR(JUMIN,1,8),14,'*') JUMIN FROM CUSTOM;
+
+SELECT * FROM CUSTOM;
+
+--주소별 인원수 구하기
+SELECT ADDR1,COUNT(*),ROUND(AVG(POINT)) FROM  CUSTOM
+GROUP BY ADDR1;
+
+
+-------------------------------------------------------------------------------------------
+
+--오라클의 SWITCH문
+--성별에 있는 값을 가지고 남/여를 만들었기 때문에 파생컬럼
+--파생컬럼이기때문에 별칭을 꼭 생성해주어야 한다.
+
+SELECT
+CASE SEX
+WHEN '1' THEN '남자'
+WHEN '0' THEN '여자'
+END GENDER,
+COUNT(*),ROUND(AVG(AGE)) FROM CUSTOM
+GROUP BY SEX;
+/*
+SELECT
+CASE 컬럼명
+	WHEN 1 THEN 100
+	WHEN 2 THEN 200
+	WHEN 3 THEN 300
+	WHEN 4 THEN 400
+	ELSE 500
+END AS 별칭,
+FROM DUAL;
+
+SELECT
+CASE 컬럼명 WHEN 1 THEN 100 ELSE 0,
+CASE 컬럼명 WHEN 2 THEN 200 ELSE 0,
+CASE 컬럼명 WHEN 3 THEN 300 ELSE 0,
+CASE 컬럼명 WHEN 4 THEN 400 ELSE 0,
+FROM DUAL;
+*/
+
+SELECT * FROM CUSTOM;
+
+SELECT
+CASE ADDR1
+WHEN '서울특별시' THEN '서울'
+WHEN '경기도' THEN '경기'
+WHEN '경상남도' THEN '경남'
+END ADDR
+FROM CUSTOM;
+
+
+-------------------------------------------------------------------------------------------
+
+/*
+JOIN문
+EQUIE JOIN(INNER JOIN)
+NON-EQUIE JOIN
+OUTER JOIN
+CROSS JOIN
+SELF JOIN
+*/
+
+--JOIN문의 특징 : 공통되는 분모가 있어야 조인문을 실행할 수 있다.
+--무조건 만들어야함. 안만들면 조인문 자체를 사용할 수 없기 때문에 엉터리 DB가 된다.
+
+
+SELECT * FROM TAB;
+
+SELECT * FROM CUSTOM WHERE USERID='nu7634';
+SELECT * FROM COMPANY WHERE USERID='nu7634';
+SELECT * FROM POINT WHERE USERID='nu7634';
+SELECT * FROM SALES WHERE USERID='nu7634';
+--테이블들끼리 공통되는 컬럼이 있어야만 조인문이 가능하다.
+--공통분모인 USERID='nu7634'가 있기 때문에, 이 사람의 이름, 회사, 포인트 정보, 구매 목록을 한번에 SELECT할 수 있다.
+
+
+-------------------------------------------------------------------------------------------
+
+
+--[EQUITE JOIN(INNER JOIN)] - 가장 기본적이고 많이 사용된다.
+SELECT CUSTOM.USERID, USERNAME, AGE, COMPANY.USERID, ADDR1, PAY
+FROM CUSTOM, COMPANY --중복되는 컬럼은 꼭 위치를 표기해줘야한다.
+WHERE CUSTOM.USERID = COMPANY.USERID; -- 공통분모
+--USERNAME앞에도 CUSTOM을 붙여야 하지만 CUSTOM안에만 있는 값이기 때문에 생략이 가능하다.
+--앞에 입력되는 USERID에 컬럼명을 붙이면 뒤에 오는 USERID를 생략해도 값이 출력된다.
+
+
+SELECT A.USERID,USERNAME,AGE,ADDR1,B.USERID,COMPANY,PAY
+FROM CUSTOM A,COMPANY B
+WHERE A.USERID = B.USERID;
+--USERNAME은 CUSTOM테이블에만 있기 때문에 앞에 테이블명을 적어주지 않아도 된다.
+--테이블은 AS 쓰면 에러. 별칭만 쓰는 것은 가능하다.
+
+
+SELECT A.USERID, USERNAME, AGE, ADDR1, B.USERID, PAY
+FROM CUSTOM A INNER JOIN COMPANY B 
+ON A.USERID = B.USERID;
+--FM방식 국제 표준값이지만 오라클에서는 ,로 사용할 수 있게 만들어놓음. 
+-- , 대신 INNER JOIN(INNER는 생략 가능) WHERE 대신 ON 입력
+
+
+--'CUSTOM'에서 UserID, UserName을 검색하고 POINT 테이블에서 제품구입, 로그인에 관계된 점수 POINT 점수(Product, Login)를 검색
+SELECT A.USERID, USERNAME, PRODUCT, LOGIN
+FROM CUSTOM A, POINT B
+WHERE A.USERID = B.USERID AND LOGIN>=10;
+
+SELECT A.USERID, USERNAME, PRODUCT, LOGIN
+FROM CUSTOM A INNER JOIN POINT B
+ON A.USERID = B.USERID AND LOGIN>=10;
+
+SELECT A.USERID, USERNAME, PRODUCT, LOGIN
+FROM CUSTOM A INNER JOIN POINT B
+ON A.USERID = B.USERID
+WHERE LOGIN>=10;
+
+
+-------------------------------------------------------------------------------------------
+
+
+--[OUTER JOIN] - 외부조인이라고도 함.
+--한쪽 테이블을 기준으로 다른쪽에 있는 데이터를 매치시키는 것이다.
+--기준 테이블을 어떤 테이블로 정하냐에 따라 출력값이 달라질 수있다.
+
+SELECT COUNT(*) FROM CUSTOM; --459
+SELECT COUNT(*) FROM COMPANY; --464
+
+--CUSTOM 테이블 기준으로 JOIN문 입력
+SELECT A.USERID, USERNAME, ADDR1, COMPANY, DEPT
+FROM CUSTOM A, COMPANY B 
+WHERE A.USERID = B.USERID(+) -- 기준점은 대각선으로 입력함.
+ORDER BY B.COMPANY DESC;
+--고객정보 테이블은 있는데 회사정보 테이블이 없는 경우는 NULL값이 됨.
+
+SELECT A.USERID, USERNAME, ADDR1, COMPANY, DEPT
+FROM CUSTOM A, COMPANY B 
+WHERE A.USERID = B.USERID(+) AND B.COMPANY IS NULL;
+--NULL값만 찾아서 출력
+
+--COMPANY 테이블 기준으로 JOIN문 입력
+SELECT A.USERID, USERNAME, ADDR1, COMPANY, DEPT
+FROM CUSTOM A, COMPANY B 
+WHERE A.USERID(+) = B.USERID -- 기준점은 대각선으로 입력함.
+ORDER BY B.COMPANY DESC;
+
+
+-------------------------------------------------------------------------------------------
+
+
+--ANSI 표준 SQL : (+) 사용 안함
+SELECT A.USERID, USERNAME, ADDR1, COMPANY, DEPT
+FROM CUSTOM A LEFT OUTER JOIN COMPANY B 
+ON A.USERID = B.USERID
+ORDER BY B.COMPANY DESC;
+
+SELECT A.USERID, USERNAME, ADDR1, COMPANY, DEPT
+FROM CUSTOM A RIGHT OUTER JOIN COMPANY B 
+ON A.USERID = B.USERID
+ORDER BY B.COMPANY DESC;
+
+
+-------------------------------------------------------------------------------------------
+
+
+--[CROSS JOIN] - 상호 조인
+--많은 양의 데이터를 새로운 테이블에 값을 넣어 테스트 할때 사용함
+
+SELECT A.USERID, USERNAME, AGE, B.USERID, ADDR1, PAY
+FROM CUSTOM A, COMPANY B;
+--459*464 = 212,976개의 ROWS 값이 출력된다.
+
+--ANSI 표준 SQL
+SELECT A.USERID, USERNAME, AGE, B.USERID, ADDR1, PAY
+FROM CUSTOM A CROSS JOIN COMPANY B;
+
+--INNER JOIN
+SELECT A.USERID, USERNAME, AGE, B.USERID, ADDR1, PAY
+FROM CUSTOM A INNER JOIN COMPANY B
+ON A.USERID = B.USERID;
+
+SELECT A.USERID, USERNAME, AGE, B.USERID, ADDR1, PAY
+FROM CUSTOM A CROSS JOIN COMPANY B
+WHERE A.USERID = B.USERID;
+
+-------------------------------------------------------------------------------------------
+
+
+--[SELF JOIN]
+--하나의 테이블을 메모리에 두번 올려 놓고 비교할 때 SELF JOIN 사용
+--하나의 테이블을 두개로 복사해서 값을 비교하는 것은 JOIN문에서만 해당된다.
+--공식으로 생각하고 외워야함.
+
+SELECT * FROM CUSTOM 
+ORDER BY USERNAME;
+
+SELECT DISTINCT A.* -- DISTINCT는 중복되는 값을 삭제함
+FROM CUSTOM A, CUSTOM B
+WHERE A.USERNAME = B.USERNAME --이름은 같아야하지만
+AND A.USERID <> B.USERID --ID는 달라야함
+ORDER BY A.USERNAME;
+
+
+--CUSTOM 테이블에서 제주도에 살고 있는 사람 중에 동일한 이름을 갖는 행을 검색
+SELECT A.*
+FROM CUSTOM A, CUSTOM B
+WHERE A.ADDR1 = '제주도'
+AND A.USERID <> B.USERID
+AND A.USERNAME = B.USERNAME
+ORDER BY A.USERNAME;
+--이렇게 하면 노영호(충청과 제주의 동명이인)가 나온다. 우리는 제주도에 살고있는 사람들 중에 동명이인을 찾아야 하므로 노영호는 출력되면 안된다.
+
+SELECT A.*
+FROM CUSTOM A INNER JOIN CUSTOM B
+ON A.USERNAME = B.USERNAME
+WHERE A.USERID <> B.USERID AND A.ADDR1 = '제주도' AND B.ADDR1 = '제주도';
+
+SELECT A.*
+FROM CUSTOM A, CUSTOM B
+WHERE A.USERNAME = B.USERNAME
+AND A.USERID <> B.USERID
+AND A.ADDR1 = '제주도' AND B.ADDR1 = '제주도';
+
+
+--3개 이상의 테이블 조인
+--CUSTOM : USERID,USERNAME
+--COMPANY : COMPANY,DEPT
+--POINT : PRODUCT,LOGIN
+
+SELECT A.USERID,USERNAME,COMPANY,DEPT,PRODUCT,LOGIN
+FROM CUSTOM A, COMPANY B, POINT C
+WHERE A.USERID = B.USERID AND A.USERID = C.USERID;
+
+SELECT A.USERID,USERNAME,COMPANY,DEPT,PRODUCT,LOGIN
+FROM CUSTOM A INNER JOIN COMPANY B
+ON A.USERID=B.USERID INNER JOIN POINT C
+ON A.USERID=C.USERID;
+
+
+
+--파생테이블과 JOIN
+--아이디별로 구매횟수와 구매금액의 합 검색
+SELECT * FROM SALES;
+
+SELECT USERID,COUNT(*) CNT, SUM(PRICE) HAP
+FROM SALES
+GROUP BY USERID
+HAVING SUM(PRICE) >= 1500000;
+
+--INLINE-VIEW
+SELECT A.USERID,USERNAME,ADDR1,HAP
+FROM CUSTOM A,(
+SELECT USERID,COUNT(*) CNT, SUM(PRICE) HAP
+FROM SALES
+GROUP BY USERID
+HAVING SUM(PRICE) >= 1500000
+) B
+WHERE A.USERID = B.USERID;
+
+
+SELECT * FROM CUSTOM;
+
+CREATE TABLE JEJU
+AS
+SELECT * FROM CUSTOM WHERE ADDR1='제주도';
+
+CREATE TABLE SEOUL
+AS
+SELECT * FROM CUSTOM WHERE ADDR1='서울특별시';
+
+CREATE TABLE KYUNG
+AS
+SELECT * FROM CUSTOM WHERE ADDR1='경기도';
+
+SELECT * FROM TAB;
+
+SELECT * FROM JEJU;
+SELECT * FROM SEOUL;
+SELECT * FROM KYUNG;
+
+SELECT * FROM JEJU
+UNION
+SELECT * FROM SEOUL
+UNION
+SELECT * FROM KYUNG;
+--PRIMARY KEY로 정렬한다. 여기서는 USERID이다.
+
+
+-------------------------------------------------------------------------------------------
+--[07/06]
+
+
+--SUBQUERY(하위쿼리)
+/*
+쿼리 안에 쿼리가 들어가 있는 것이다. 
+하위쿼리는 괄호를 쓰지 않으면 에러가 난다.
+비교하는 컬럼의 개수는 동일해야 한다.
+비교하는 컬럼명은 동일해야 같은 데이터에서 값을 비교하여 출력된다.
+비교하는 컬럼명이 다른 경우 에러가 나지는 않지만 원하는 값으로 출력되지 않는다.
+하위쿼리는 100% JOIN문으로 변경할 수 있다.
+*/
+
+--COMPANY 테이블에서 USERID,COMPANY,DEPT PAY,평균월급
+SELECT * FROM COMPANY;
+
+SELECT ROUND(AVG(PAY)) A_PAY FROM COMPANY;
+
+SELECT USERID,COMPANY,DEPT PAY,
+(SELECT ROUND(AVG(PAY)) A_PAY FROM COMPANY) A_PAY 
+FROM COMPANY;
+
+--CUSTOM 테이블에서 평균 나이보다 많은 사원의 정보 검색
+SELECT * FROM CUSTOM;
+
+SELECT ROUND(AVG(AGE)) FROM CUSTOM; --29
+
+SELECT * FROM CUSTOM WHERE AGE>=29;
+
+--SELECT문이 29위치에 하위쿼리로 들어간다.
+SELECT * FROM CUSTOM
+WHERE AGE>=(SELECT ROUND(AVG(AGE)) FROM CUSTOM);
+
+
+--현대자동차 그룹에 근무하는 직원
+SELECT * FROM COMPANY WHERE COMPANY LIKE '현대자동차%';
+
+SELECT * FROM CUSTOM
+WHERE USERID='EE9224' OR USERID='el3409';
+
+SELECT * FROM CUSTOM
+WHERE USERID IN ('EE9224','el3409');
+--둘이 같은 결과
+
+
+SELECT USERID FROM COMPANY
+WHERE COMPANY LIKE '현대자동차%';
+
+SELECT * FROM CUSTOM 
+WHERE USERID IN (SELECT USERID FROM COMPANY WHERE COMPANY LIKE '현대자동차%');
+--위 셀렉트 문을 하위쿼리로
+
+--JOIN문을 사용해 출력
+SELECT A.*
+FROM CUSTOM A INNER JOIN COMPANY B
+ON A.USERID = B.USERID AND B.COMPANY LIKE '현대자동차%';
+
+SELECT A.*
+FROM CUSTOM A, COMPANY B
+WHERE A.USERID = B.USERID AND B.COMPANY LIKE '현대자동차%';
+
+
+--4회 이상 판매기록이 있는 고객들의 기본 정보 검색
+SELECT * FROM SALES;
+
+SELECT USERID,COUNT(*) CNT FROM SALES
+GROUP BY USERID
+HAVING COUNT(*)>=4;
+
+SELECT * FROM CUSTOM
+WHERE USERID IN ( SELECT USERID FROM SALES
+GROUP BY USERID
+HAVING COUNT(*)>=4);
+
+SELECT A.*, CNT
+FROM CUSTOM A,
+(SELECT USERID,COUNT(*) CNT FROM SALES
+GROUP BY USERID
+HAVING COUNT(*)>=4) B
+WHERE A.USERID = B.USERID;
+
+SELECT A.* --질문~~!
+FROM CUSTOM A RIGHT OUTER JOIN COMPANY B  
+ON A.USERID = B.USERID AND B.COMPANY LIKE '%현대%자동차%';
+SELECT * FROM CUSTOM;
+SELECT * FROM COMPANY;
+
+SELECT A.*
+FROM CUSTOM A RIGHT OUTER JOIN COMPANY B  /*가져올 데이터가 CUSTOM에 있다*/
+ON A.USERID = B.USERID
+WHERE B.COMPANY LIKE '%현대%자동차%';
+
+
+-------------------------------------------------------------------------------------------
+
+
+/*
+ANY(범위가 포함), ALL(범위가 미포함)
+
+>ANY : 최소값보다 큰 데이터
+<ANY : 최대값보다 작은 데이터
+>ALL : 최대값보다 큰 데이터
+<ALL : 최소값보다 작은 데이터
+*/
+SELECT POINT FROM CUSTOM;
+
+SELECT POINT FROM CUSTOM WHERE ADDR1='제주도' ORDER BY POINT; --132,269
+
+-- [ >ANY ]
+SELECT * FROM CUSTOM
+WHERE POINT > ANY(SELECT POINT FROM CUSTOM WHERE ADDR1='제주도');
+
+SELECT * FROM CUSTOM
+WHERE POINT > (SELECT MIN(POINT) FROM CUSTOM WHERE ADDR1='제주도');
+
+-- [ <ANY ]
+SELECT * FROM CUSTOM
+WHERE POINT < ANY(SELECT POINT FROM CUSTOM WHERE ADDR1='제주도');
+
+SELECT * FROM CUSTOM
+WHERE POINT < (SELECT MAX(POINT) FROM CUSTOM WHERE ADDR1='제주도');
+--MIN/MAX로 써도 되는데 왜 굳이 ANY를 사용하는가? > 속도가 훨씬 빠르다.
+
+-- [ >ALL ]
+SELECT * FROM CUSTOM
+WHERE POINT > ALL(SELECT POINT FROM CUSTOM WHERE ADDR1='제주도');
+
+SELECT * FROM CUSTOM
+WHERE POINT > (SELECT MAX(POINT) FROM CUSTOM WHERE ADDR1='제주도');
+
+-- [ <ALL ]
+SELECT * FROM CUSTOM
+WHERE POINT < ALL(SELECT POINT FROM CUSTOM WHERE ADDR1='제주도');
+
+SELECT * FROM CUSTOM
+WHERE POINT < (SELECT MIN(POINT) FROM CUSTOM WHERE ADDR1='제주도');
+
+SELECT * FROM CUSTOM;
+
+UPDATE CUSTOM SET POINT=130 WHERE USERID='nu7634';
+
+
+SELECT POINT FROM CUSTOM WHERE AGE>=70;
+
+SELECT * FROM CUSTOM
+WHERE POINT > ANY (SELECT POINT FROM CUSTOM WHERE AGE>=70);
+--ANY는 하위쿼리의 결과가 없으면 상위쿼리의 결과도 나오지 않는다.
+
+SELECT * FROM CUSTOM
+WHERE POINT > ALL (SELECT POINT FROM CUSTOM WHERE AGE>=70);
+--ALL은 하위쿼리 데이터가 없어도 모든 데이터가 나온다. 크건 작건 다 나온다.
+
+
+SELECT * FROM CUSTOM 
+WHERE USERID IN (SELECT USERID FROM COMPANY WHERE COMPANY LIKE '현대자동차%');
+
+SELECT * FROM CUSTOM 
+WHERE USERID = ANY (SELECT USERID FROM COMPANY WHERE COMPANY LIKE '현대자동차%');
+--IN과 =ANY는 같다. ANY가 속도가 더 빠르다.
+
+SELECT * FROM CUSTOM 
+WHERE USERID NOT IN (SELECT USERID FROM COMPANY WHERE COMPANY LIKE '현대자동차%');
+
+SELECT * FROM CUSTOM 
+WHERE USERID <> ALL (SELECT USERID FROM COMPANY WHERE COMPANY LIKE '현대자동차%');
+--NOT IN과 <>ALL은 같다.
+
+
+-------------------------------------------------------------------------------------------
+
+--하위쿼리 : 독자적 처리 가능
+--괄호 밖으로 나와도 사용 가능
+SELECT USERID,USERNAME,ADDR1,SCHOL FROM CUSTOM
+WHERE USERID IN
+(SELECT USERID FROM COMPANY WHERE COMPANY LIKE '현대자동차%');
+
+SELECT USERID FROM COMPANY WHERE COMPANY LIKE '현대자동차%'; --O
+
+
+--상관쿼리 : 독자적 처리불가능
+--괄호 밖에 나오면 사용 불가
+SELECT USERID,USERNAME,ADDR1,SCHOL FROM CUSTOM
+WHERE EXISTS
+(SELECT * FROM COMPANY WHERE USERID=CUSTOM.USERID AND COMPANY LIKE '현대자동차%');
+
+SELECT * FROM COMPANY WHERE USERID=CUSTOM.USERID AND COMPANY LIKE '현대자동차%'; --X
+
+
+-------------------------------------------------------------------------------------------
+
+--조건으로만 작성
+SELECT * FROM CUSTOM WHERE ADDR1='경기도' AND AGE<=20;
+
+--하위쿼리 + 조건으로 작성
+SELECT * FROM(SELECT * FROM CUSTOM WHERE ADDR1='경기도') A
+WHERE A.AGE<=20;
+
+
+-------------------------------------------------------------------------------------------
+
+--DML(INSERT,UPDATE,DELETE)
+
+
+
+
+
+
+
+
+
+
+
