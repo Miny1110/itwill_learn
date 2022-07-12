@@ -46,6 +46,7 @@ public class ScoreDAO {
 			sql = "insert into score (hak,name,kor,eng,mat) ";
 			sql+= "values(?,?,?,?,?)";
 			
+			//PreparedStatement는 만들 때 미리 DB에 가서 sql을 검사함
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, dto.getHak());
@@ -136,24 +137,4 @@ public class ScoreDAO {
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }
