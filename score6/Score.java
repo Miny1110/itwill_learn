@@ -14,6 +14,8 @@ public class Score {
 	public void insert() {
 		
 		ScoreDTO dto =new ScoreDTO();
+		//Score가 5개의 값을 받아서 dto에 담아뒀다.
+		//dto를 ScoreDAO에 보내면 ScoreDAO는 insertData를 사용해서 DB에 데이터를 넣는다.
 		
 		System.out.print("학번?");
 		dto.setHak(sc.next());
@@ -84,11 +86,6 @@ public class Score {
 			System.out.println("삭제 실패!");
 		}
 		
-		
 	}
-	
-	
-	
-	
 	
 }
