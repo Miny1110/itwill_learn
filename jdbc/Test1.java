@@ -6,7 +6,7 @@ import java.sql.Statement;
 import com.db.DBConn;
 
 //Statement : 가장 일반적
-//
+//PreparedStatement
 //CallableStatement : 프로시저랑 연결할 때 사용
 public class Test1 {
 
