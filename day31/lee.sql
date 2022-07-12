@@ -743,41 +743,84 @@ END;
 /
 
 -------------------------------------------------------------------------------------------
+--[CMD창] 테이블 만들고 INSERT 통해 데이터 만들기
 
-
-
-
-
-
-
-/*
---CUSTOM 테이블에 INSERT 시키는 프로시져 만들기
-CREATE OR REPLACE PROCEDURE CUS_IN
-(A VARCHAR2,B VARCHAR2,C VARCHAR2,D NUMBER,E VARCHAR2,F VARCHAR2,G VARCHAR2,H VARCHAR2,I VARCHAR2,J VARCHAR2,K VARCHAR2,L VARCHAR2,M VARCHAR2,N VARCHAR2)
+CREATE OR REPLACE PROCEDURE P_EX
+(A IN NUMBER, B IN NUMBER)
 IS
 BEGIN
-INSERT INTO CUSTOM VALUES(A,B,C,D,E,F,G,H,I,J,K,L,M,N);
+INSERT INTO TEST(A,B) VALUES(A,B);
 COMMIT;
 END;
+/
 
-EXEC CUS_IN('A001','SUZI','123',27,'0','123-123','서울','강남구','역삼동','010-111-2222','가수','대졸',100,SYSDATE);
+EXEC P_EX(20,30);
 
+-------------------------------------------------------------------------------------------
+--[CMD창] UPDATE 프로시저
 
-
---CUSTOM 테이블에 UPDATE 시키는 프로시져 만들기
-CREATE OR REPLACE PROCEDURE CUS_UP
-(A VARCHAR2,B VARCHAR2,C VARCHAR2,D NUMBER,E VARCHAR2,F VARCHAR2,G VARCHAR2,H VARCHAR2,I VARCHAR2,J VARCHAR2,K VARCHAR2,L VARCHAR2,M VARCHAR2,N VARCHAR2)
+CREATE OR REPLACE PROCEDURE P_UP
+(A_C NUMBER, B_C NUMBER)
 IS
 BEGIN
-UPDATE CUSTOM SET USERNAME=B,JUMIN=C,AGE=D,SEX=E,ZIP=F,ADDR1=G,ADDR2=H,ADDR3=I,TEL=J,SCHOL=L,POINT=M,REGDATE=N WHERE USERID=A;
+UPDATE TEST SET B=B_C WHERE A=A_C;
+COMMIT;
+END;
+/
+
+EXEC P_UP(10,100);
+
+-------------------------------------------------------------------------------------------
+--[CMD창] DELETE 프로시저 : 프로시저 중 사용빈도가 제일 높다.
+
+CREATE OR REPLACE PROCEDURE P_DE
+(A_C NUMBER)
+IS
+BEGIN
+DELETE TEST WHERE A=A_C;
+COMMIT;
+END;
+/
+
+EXEC P_DE(10);
+
+-------------------------------------------------------------------------------------------
+--[CMD창] CUSTOM 테이블에 INSERT 시키는 프로시저 만들기
+
+CREATE OR REPLACE PROCEDURE CUS_IN
+(A VARCHAR2,B VARCHAR2,C VARCHAR2,D NUMBER,E VARCHAR2,
+F VARCHAR2,G VARCHAR2,H VARCHAR2,I VARCHAR2,J VARCHAR2,
+K VARCHAR2,L VARCHAR2,M NUMBER,N VARCHAR2)
+IS
+BEGIN
+INSERT INTO CUSTOM VALUES (A,B,C,D,E,F,G,H,I,J,K,L,M,N);
+COMMIT;
+END;
+/
+
+EXEC CUS_IN ('A001','SUZI','123',27,'0','123-123','서울','강남구','역삼동','010-111-2222','가수','대졸',100,SYSDATE);
+
+-------------------------------------------------------------------------------------------
+--[CMD창] CUSTOM 테이블에 UPDATE 시키는 프로시져 만들기
+
+CREATE OR REPLACE PROCEDURE CUS_UP
+(A VARCHAR2,B VARCHAR2,C VARCHAR2,D NUMBER,E VARCHAR2,
+F VARCHAR2,G VARCHAR2,H VARCHAR2,I VARCHAR2,J VARCHAR2,
+K VARCHAR2,L VARCHAR2,M VARCHAR2,N VARCHAR2)
+IS
+BEGIN
+UPDATE CUSTOM SET USERNAME=B,JUMIN=C,AGE=D,SEX=E,ZIP=F,ADDR1=G,
+ADDR2=H,ADDR3=I,TEL=J,SCHOL=L,POINT=M,REGDATE=N
+WHERE USERID=A;
 COMMIT;
 END;
 
 EXEC CUS_UP('A001','INNA','123',27,'0','123-123','서울','강남구','역삼동','010-111-2222','가수','대졸',100,SYSDATE);
 
 
+-------------------------------------------------------------------------------------------
+--[CMD창] CUSTOM 테이블에 DELETE 시키는 프로시져 만들기
 
---CUSTOM 테이블에 DELETE 시키는 프로시져 만들기
 CREATE OR REPLACE PROCEDURE CUS_DEL
 (A VARCHAR2)
 IS
@@ -785,8 +828,12 @@ BEGIN
 DELETE CUSTOM WHERE USERID=A;
 COMMIT;
 END;
+/
 
-*/
+EXEC CUS_DEL('A001');
+
+-------------------------------------------------------------------------------------------
+--[CMD창] 함수
 
 CREATE OR REPLACE FUNCTION F_CUBVOL
 (GILI NUMBER, POK NUMBER, NOPI NUMBER)
@@ -801,7 +848,7 @@ END;
 
 SELECT F_CUBVOL(4,7,8) BUPI FROM DUAL;
 
-
+--------------------------------------------
 
 CREATE OR REPLACE FUNCTION F_NAME
 (NAME IN VARCHAR2)
@@ -816,11 +863,12 @@ END;
 
 SELECT F_NAME('영웅재중') NAME FROM DUAL;
 
-COL NAME FORMAT A8
+--------------------------------------------
+
+COL NAME FORMAT A8; --길이 설정
 SELECT F_NAME(USERNAME) FROM CUSTOM WHERE ADDR1='제주도';
 
-
-
+--------------------------------------------
 
 SELECT 
 FLOOR(MONTHS_BETWEEN(SYSDATE,'2002-06-01')/12) || '년' ||
@@ -843,8 +891,7 @@ END;
 SELECT USERNAME,REGDATE,F_SDAY(REGDATE) GUNDATE
 FROM CUSTOM WHERE ADDR1='제주도';
 
-
-
+--------------------------------------------
 
 CREATE OR REPLACE FUNCTION F_GENDER
 (V_JUMIN IN VARCHAR2)
@@ -866,9 +913,9 @@ COL GENDER FORMAT A16;
 SELECT USERNAME,JUMIN,F_GENDER(JUMIN) GENDER
 FROM CUSTOM WHERE ADDR1='제주도';
 
-
-
+-------------------------------------------------------------------------------------------
 --[IF문]
+
 CREATE OR REPLACE FUNCTION F_PAYGRADE
 (V_PAY IN NUMBER)
 RETURN VARCHAR2
@@ -897,8 +944,9 @@ FROM COMPANY WHERE USERID='XA9776';
 SELECT USERID,POSIT,PAY,F_PAYGRADE(PAY)||'등급' PAYGRADE
 FROM COMPANY WHERE USERID='ye8802';
 
-
+-------------------------------------------------------------------------------------------
 --[LOOP문=DO WHILE]
+
 CREATE TABLE TEST2
 (NO NUMBER,
 NAME VARCHAR2(10) DEFAULT '홍길동');
@@ -909,7 +957,7 @@ BEGIN
 LOOP
 INSERT INTO TEST2(NO) VALUES(V_COUNT);
 V_COUNT := V_COUNT + 1;
-EXIT WHEN V_COUNT > 10;
+EXIT WHEN V_COUNT > 10; --조건이 아래에 있다는 점이 DO WHILE문과 비슷하다
 END LOOP;
 DBMS_OUTPUT.PUT_LINE('데이터 입력 완료');
 END;
@@ -917,12 +965,13 @@ END;
 
 SELECT * FROM TEST2;
 
-
+-------------------------------------------------------------------------------------------
 --[FOR문]
+
 CREATE OR REPLACE PROCEDURE P_FOR
 IS
 BEGIN
-FOR I IN 11..30 LOOP
+FOR I IN 11..30 LOOP --11부터 30까지
 INSERT INTO TEST2(NO) VALUES(I);
 COMMIT;
 END LOOP;
@@ -930,11 +979,13 @@ END;
 /
 
 EXEC P_FOR;
+--매개변수 없이 입력하면 된다.
 
 SELECT * FROM TEST2;
 
-
+-------------------------------------------------------------------------------------------
 --[WHILE문]
+
 CREATE OR REPLACE PROCEDURE P_WHILE
 (V_START NUMBER,V_END NUMBER)
 IS
@@ -945,16 +996,15 @@ WHILE CNT<=V_END LOOP
 TOT :=  TOT+CNT;
 CNT := CNT+1;
 END LOOP;
-DBMS_OUTPUT.PUT_LINE(TO_CHAR(V_START)||'부터'||TO_CHAR(V_END)||
-'까지의 합은 '||TO_CHAR(TOT)||'입니다');
+DBMS_OUTPUT.PUT_LINE(TO_CHAR(V_START)||'부터'||TO_CHAR(V_END)||'까지의 합은 '||TO_CHAR(TOT)||'입니다');
 END;
 /
 
 EXEC P_WHILE(1,100);
 
-
-
+-------------------------------------------------------------------------------------------
 --[예외처리]
+
 CREATE OR REPLACE PROCEDURE EXE_TEST
 IS
 SW_REC 사원%ROWTYPE;
@@ -981,14 +1031,13 @@ END;
 
 EXEC EXE_TEST; --데이터가 많습니다
 
-
-
+--------------------------------------------
 
 CREATE OR REPLACE PROCEDURE EXE_TEST
 IS
 SW_REC 사원%ROWTYPE;
 BEGIN
-SELECT * INTO SW_REC FROM 사원 WHERE 사원번호='2001';
+SELECT * INTO SW_REC FROM 사원 WHERE 사원번호='2001'; --데이터를 하나만 INSERT
 DBMS_OUTPUT.PUT_LINE('데이터 검색 성공');
 
 EXCEPTION
@@ -1010,9 +1059,9 @@ END;
 
 EXEC EXE_TEST; --데이터 검색 성공
 
-
-
+-------------------------------------------------------------------------------------------
 --[사용자 정의 에러]
+
 CREATE OR REPLACE PROCEDURE PAY_VALIDATE
 (V_SANO 사원.사원번호%TYPE)
 IS
@@ -1026,7 +1075,7 @@ SELECT * INTO SW_REC FROM 사원 WHERE 사원번호=V_SANO;
 IF SW_REC.급여 >= 3000 THEN
 DBMS_OUTPUT.PUT_LINE('급여가 3000 이상 적당함');
 
-ELSIF SW_REC.급여 <3000 THEN
+ELSIF SW_REC.급여 <3000 THEN --ELSEIF(X) / ELSIF(O)
 RAISE NOT_ENOUGH_PAY;
 
 ELSE
@@ -1042,3 +1091,25 @@ END;
 /
 
 EXEC PAY_VALIDATE(2003);
+
+-------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
