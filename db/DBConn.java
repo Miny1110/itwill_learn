@@ -20,7 +20,7 @@ public class DBConn {
 				//오라클의 기본 포트번호:1521
 				//db 이름:xe
 				//띄어쓰기 금지
-				String url = "jdbc:oracle:thin:@192.168.16.1:1521:xe"; //type4형식
+				String url = "jdbc:oracle:thin:@localhost:1521:xe"; //type4형식
 				String user = "suzi";
 				String pwd = "a123";
 				
@@ -40,9 +40,11 @@ public class DBConn {
 	public static void close() {
 		
 		//dbConn이 null이 아닐때 연결을 끊는다.
+		//데이터가 있는지 확인
 		if(dbConn!=null) {
 			try {
 				
+				//연결이 끊겼는지 확인
 				if(!dbConn.isClosed()) {
 					dbConn.close();
 				}
