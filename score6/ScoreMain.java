@@ -30,16 +30,6 @@ public class ScoreMain {
 				DBConn.close();
 				System.exit(0);
 			}
-			
-			
 		}
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 }
