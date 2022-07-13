@@ -68,8 +68,8 @@ public class ScoreDTO {
 
 		String str;
 		
-		str = String.format("%8s %8s %4d %4d %4d %4d %4d %4d",
-				hak,name,kor,eng,tot,ave,rank);
+		str = String.format("%8s %8s %4d %4d %4d %4d %4d",
+				hak,name,kor,eng,mat, tot,ave);
 		
 		return str;
 	}
