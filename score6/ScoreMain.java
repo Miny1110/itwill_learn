@@ -25,6 +25,9 @@ public class ScoreMain {
 			case 1: ob.insert(); break;
 			case 2: ob.update(); break;
 			case 3: ob.delete(); break;
+			case 4: ob.selectAll(); break;
+			case 5: ob.searchHak(); break;
+			case 6: ob.searchName(); break;
 			
 			default: 
 				DBConn.close();
