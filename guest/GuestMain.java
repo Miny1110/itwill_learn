@@ -2,6 +2,8 @@ package com.guest;
 
 import java.util.Scanner;
 
+import com.db.DBConn;
+
 public class GuestMain {
 
 	public static void main(String[] args) {
@@ -17,7 +19,7 @@ public class GuestMain {
 				
 				ch = sc.nextInt();
 				
-			}while(ch<1 || ch>7);
+			}while(ch<1 || ch>6);
 			
 			
 			switch(ch) {
@@ -25,21 +27,15 @@ public class GuestMain {
 			case 1: ob.insert(); break;
 			case 2: ob.write(); break;
 			case 3: ob.modify(); break;
-			case 4:
-			case 5:
-			case 6:
-			default: break;
-			
+			case 4: ob.delete(); break;
+			case 5: ob.check(); break;
+			default:
+				DBConn.close();
+				System.exit(0);
 			
 			}
 			
-			
-			
-			
 		}
-		
-		
-		
 		
 	}
 
