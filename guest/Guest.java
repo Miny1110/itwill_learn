@@ -72,7 +72,7 @@ public class Guest {
 		System.out.print("내용?");
 		dto.setContent(sc.next());
 
-		int result = dao.writeData(dto);
+		int result = dao.modifyData(dto);
 
 		if(result!=0) {
 			System.out.println("수정 성공!");
@@ -86,16 +86,35 @@ public class Guest {
 	//방명록 삭제
 	public void delete() {
 
+		System.out.println("아이디?");
+		String id = sc.next();
 
+		int result = dao.deleteData(id);
 
+		if(result!=0) {
+			System.out.println("삭제 성공!");
+		}else {
+			System.out.println("삭제 실패!");
+		}
 
 	}
 
 
 	//방명록 확인
 	public void check() {
-
-
+		
+		GuestDTO dto = new GuestDTO();
+		
+		System.out.println("아이디?");
+		dto.setId(sc.next());
+		
+		int result = dao.checkData(dto);
+		
+		if(result!=0) {
+			System.out.println("확인 성공!");
+		}else {
+			System.out.println("확인 실패!");
+		}
 
 
 	}
