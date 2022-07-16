@@ -40,18 +40,14 @@
 <body bgcolor="#F9F9F9">
 
 <form action="" name="myForm">
-<table style="width: 500px;" align="center">
+<table style="width: 500px; font-family: 돋움; font-size: 11pt; font-weight: bold;" align="center">
 
 <tr>
-<td colspan="3"><br/><br/></td>
+<td colspan="3" align="center" style="height: 80px;"><a href="https://www.naver.com/" target="_blank"><img src="naverLogo.jpg"></a></td>
 </tr>
 
 <tr>
-<td colspan="3" align="center"><a href="https://www.naver.com/" target="_blank"><img src="naverLogo.jpg"></a></td>
-</tr>
-
-<tr>
-<td colspan="3"><b>아이디</b></td>
+<td colspan="3" style="height: 30px;">아이디</td>
 </tr>
 
 <tr>
@@ -59,7 +55,7 @@
 </tr>
 
 <tr>
-<td colspan="3"><b>비밀번호</b></td>
+<td colspan="3" style="height: 30px;">비밀번호</td>
 </tr>
 
 <tr>
@@ -67,7 +63,7 @@
 </tr>
 
 <tr>
-<td colspan="3"><b>비밀번호 재확인</b></td>
+<td colspan="3" style="height: 30px;">비밀번호 재확인</td>
 </tr>
 
 <tr>
@@ -75,7 +71,7 @@
 </tr>
 
 <tr>
-<td colspan="3"><b>생년월일</b></td>
+<td colspan="3" style="height: 30px;">생년월일</td>
 </tr>
 	
 <tr>
@@ -103,7 +99,7 @@
 </tr>	
 	
 <tr>
-<td colspan="3"><b>성별</b></td>
+<td colspan="3" style="height: 30px;">성별</td>
 </tr>	
 
 <tr >
@@ -118,7 +114,7 @@
 </tr>		
 
 <tr>
-<td colspan="3"><b>본인 확인 이메일</b><font color="gray">(선택)</font></td>
+<td colspan="3" style="height: 30px;">본인 확인 이메일<font color="gray" style="font-size: 7pt; font-weight: normal;" >(선택)</font></td>
 </tr>	
 
 <tr>
@@ -126,7 +122,7 @@
 </tr>
 
 <tr>
-<td colspan="3"><b>휴대전화</b></td>
+<td colspan="3" style="height: 30px;">휴대전화</td>
 </tr>
 
 <tr>
@@ -153,17 +149,16 @@
 </tr>
 
 <tr>
-<td colspan="3"><br/></td>
-</tr>
-
-<tr>
-<td colspan="3" align="center"><a href="https://policy.naver.com/rules/service.html" target="_blank">이용약관</a> | 
-	<a href="https://policy.naver.com/policy/privacy.html" target="_blank">개인정보처리방침</a></td>
-</tr>
-
-<tr>
-<td colspan="3" align="center"><a href="https://policy.naver.com/rules/disclaimer.html" target="_blank">책임의 한계와 법적고지</a> | 
-	<a href="https://help.naver.com/support/service/main.help?serviceNo=532&_membership_p.membership_p.membership_26&from=alias" target="_blank">회원정보 고객센터</a></td>
+<td colspan="3" align="center" style="height: 50px; font-size: 12px;">
+	<a href="https://policy.naver.com/rules/service.html" target="_blank">
+	이용약관</a> | 
+	<a href="https://policy.naver.com/policy/privacy.html" target="_blank">
+	개인정보처리방침</a> |
+	<a href="https://policy.naver.com/rules/disclaimer.html" target="_blank">
+	책임의 한계와 법적고지</a> | 
+	<a href="https://help.naver.com/support/service/main.help?serviceNo=532&_membership_p.membership_p.membership_26&from=alias" target="_blank">
+	회원정보 고객센터</a>
+</td>
 </tr>
 
 </table>
