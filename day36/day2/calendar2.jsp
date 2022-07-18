@@ -10,10 +10,10 @@
 	int nowYear = cal.get(Calendar.YEAR);
 	int nowMonth = cal.get(Calendar.MONTH)+1;
 	int nowDay = cal.get(Calendar.DAY_OF_MONTH);
-			
-	//클라이언트가 넘긴 데이터
+		
 	String strYear = request.getParameter("year");
 	String strMonth = request.getParameter("month");
+	
 
 	//달력에 표시할 년,월
 	int year = nowYear;
@@ -25,18 +25,6 @@
 	
 	if(strMonth!=null){
 		month = Integer.parseInt(strMonth);
-	}
-	
-	int preYear = year, preMonth = month-1;
-	if(preMonth<1){
-		preYear = year-1;
-		preMonth = 12;
-	}
-	
-	int nextYear = year, nextMonth = month+1;
-	if(nextMonth>12){
-		nextYear = year+1;
-		nextMonth = 1;
 	}
 	
 	//표시할 달력
@@ -73,36 +61,27 @@ a {
 
 <script type="text/javascript">
 
+
 	function yearSet() {
-		
 		var f = document.myForm;
 		
 		var startYear = <%=year%> - 5;
 		
 		for(var i=0;i<11;i++){
-			f.userYear[i] = new Option(startYear + i, startYear + i);
+			f.userYear[i] = new Option(startYear+i, startYear+i);
 		}
-		f.userYear[5].selected = true;
 		
 		for(var i=0;i<12;i++){
-			f.userMonth[i] = new Option(i+1);
+			f.userMonth[i] = new Option(i+1, i+1);
 		}
-		
 	}
 	
 	function yearUpdate(){
 		
-		var startYear2 = 0;
-
-		for(var i=0;i<11;i++){
-			if(f.userYear[i].selected==true){
-				startYear2=f.userYear[i];
-				return;
-			}
-		}
-		for(var i=0;i<11;i++){
-			f.userYear[i] = new Option(startYear2 + i, startYear2 + i);
-		}
+		var f = document.myForm;
+		f.submit();
+		
+		
 		
 	}
 		
@@ -113,7 +92,7 @@ a {
 <body onload="yearSet();">
 
 <br/><br/>
-<form action="" name="myForm">
+<form action="calendar2.jsp?year=<%=year %>&month<%=month %>" name="myForm" method="get">
 <table align="center" width="210" cellpadding="2" cellspacing="1">
 <tr>
 	<td align="right">
