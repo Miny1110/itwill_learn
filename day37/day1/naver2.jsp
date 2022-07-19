@@ -65,7 +65,7 @@ select{
 		
 			if(f.id.value && f.pw.value && f.pw2.value && f.bir1.value && f.bir2.value && f.email.value && f.pNum1.value && f.pNum2.value){
 				alert("회원가입이 완료되었습니다.");
-				return;
+				f.submit();
 			}else{
 				alert("내용을 입력해주세요.");
 			}
@@ -186,7 +186,7 @@ select{
 </tr>
 
 <tr>
-<td colspan="3"><a href="javascript:join();"><img src="join.jpg" width="456px" onclick="submit();"></a></td>
+<td colspan="3"><img src="join.jpg" width="456px" onclick="join();"></td>
 </tr>
 
 <tr>
